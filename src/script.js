@@ -6,6 +6,7 @@ let cartQuantity = 0;
 let isCartOpen = false;
 let isCartIndicatorVisible = false;
 let isCartEmpty = cartItems.length > 0;
+let isModalOpen = false;
 
 const largeProductImages = [
   '/images/image-product-1.jpg',
@@ -27,6 +28,8 @@ const cartTitleElement = document.getElementById('cart-title');
 const cartItemPrice = document.getElementById('price');
 const cartItemTotal = document.getElementById('total');
 const cartItemAmount = document.getElementById('amount');
+
+const modal = document.getElementById('modal');
 
 largeImageElement.src = largeProductImage;
 
@@ -160,4 +163,14 @@ function clearCart() {
   cartItemsElement.classList.add('hidden');
   cartItemsElement.classList.remove('flex');
   emptyCartElement.classList.remove('hidden');
+}
+
+function handleModal() {
+  if (isModalOpen) {
+    modal.classList.add('hidden');
+  } else {
+    modal.classList.remove('hidden');
+  }
+
+  isModalOpen = !isModalOpen;
 }
