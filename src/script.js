@@ -1,5 +1,6 @@
 let currentlySelectedImage = 0;
 let currentlySelectedThumnail = null;
+let currentlySelectedLightboxThumbnail = null;
 let currentQuantity = 0;
 let cartItems = [];
 let cartQuantity = 0;
@@ -7,6 +8,7 @@ let isCartOpen = false;
 let isCartIndicatorVisible = false;
 let isCartEmpty = cartItems.length > 0;
 let isModalOpen = false;
+let isLightboxOpen = false;
 
 const largeProductImages = [
   '/images/image-product-1.jpg',
@@ -18,6 +20,9 @@ const largeProductImages = [
 let largeProductImage = largeProductImages[currentlySelectedImage];
 
 const largeImageElement = document.getElementById('large-image');
+const lightboxLargeImageElement = document.getElementById(
+  'lightbox-large-image'
+);
 const quantity = document.getElementById('quantity');
 const cartIndicator = document.getElementById('cart-indicator');
 const cart = document.getElementById('cart');
@@ -30,6 +35,7 @@ const cartItemTotal = document.getElementById('total');
 const cartItemAmount = document.getElementById('amount');
 
 const modal = document.getElementById('modal');
+const lightbox = document.getElementById('lightbox');
 
 largeImageElement.src = largeProductImage;
 
@@ -44,10 +50,22 @@ function setImage(number) {
           'outline',
           'mix-blend-overlay'
         );
+
+      document
+        .getElementById('lightbox-' + i)
+        .classList.remove(
+          'outline-oj',
+          'outline-2',
+          'outline',
+          'mix-blend-overlay'
+        );
     }
   }
 
   currentlySelectedThumnail = document.getElementById(number);
+  currentlySelectedLightboxThumbnail = document.getElementById(
+    'lightbox-' + number
+  );
 
   // set selected css on thumbnail
   currentlySelectedThumnail.classList.add(
@@ -57,8 +75,16 @@ function setImage(number) {
     'mix-blend-overlay'
   );
 
+  currentlySelectedLightboxThumbnail.classList.add(
+    'outline-oj',
+    'outline-2',
+    'outline',
+    'mix-blend-overlay'
+  );
+
   currentlySelectedImage = number;
   largeImageElement.src = largeProductImages[currentlySelectedImage];
+  lightboxLargeImageElement.src = largeProductImages[currentlySelectedImage];
 }
 
 function openLightbox() {
@@ -82,6 +108,7 @@ function changeImage(number) {
     }
   }
 
+  lightboxLargeImageElement.src = largeProductImages[currentlySelectedImage];
   largeImageElement.src = largeProductImages[currentlySelectedImage];
 }
 
@@ -173,4 +200,18 @@ function handleModal() {
   }
 
   isModalOpen = !isModalOpen;
+}
+
+function handleLightbox() {
+  if (window.innerWidth > 638) {
+    if (isLightboxOpen) {
+      lightbox.classList.add('hidden');
+      lightbox.classList.remove('grid');
+    } else {
+      lightbox.classList.add('grid');
+      lightbox.classList.remove('hidden');
+    }
+
+    isLightboxOpen = !isLightboxOpen;
+  }
 }

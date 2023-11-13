@@ -190,6 +190,104 @@
         </div>
       </div>
     </div>
+    <div
+      id="lightbox"
+      class="fixed z-[1000] top-0 bg-black/50 h-screen w-screen items-center justify-center hidden"
+    >
+      <div class="max-w-[1100px] relative">
+        <div class="relative">
+          <button
+            onclick="handleLightbox()"
+            class="fill-white absolute top-0 right-0 hover:fill-oj z-50"
+          >
+            <svg width="14" height="15" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </button>
+          <div class="relative max-w-[550px] pt-5">
+            <img
+              src="/images/image-product-1.jpg"
+              alt=""
+              class="sm:rounded-2xl rounded-none mb-8 aspect-square w-[550px] relative z-0"
+              id="lightbox-large-image"
+            />
+            <button
+              class="absolute -left-[25px] bg-white w-[50px] h-[50px] top-[calc(50%-25px)] flex items-center justify-center rounded-full"
+              onclick="changeImage(-1)"
+            >
+              <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M11 1 3 9l8 8"
+                  stroke="#1D2026"
+                  stroke-width="3"
+                  fill="none"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </button>
+
+            <button
+              class="absolute -right-[25px] bg-white w-[50px] h-[50px] top-[calc(50%-25px)] flex items-center justify-center rounded-full"
+              onclick="changeImage(1)"
+            >
+              <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="m2 1 8 8-8 8"
+                  stroke="#1D2026"
+                  stroke-width="3"
+                  fill="none"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="sm:grid grid-cols-4 gap-8 hidden max-w-[550px] items-center justify-center"
+        >
+          <div class="bg-white/75 rounded-lg">
+            <img
+              src="/images/image-product-1-thumbnail.jpg"
+              alt=""
+              class="rounded-lg aspect-square hover:cursor-pointer"
+              onclick="setImage(0)"
+              id="lightbox-0"
+            />
+          </div>
+          <div class="bg-white/75 rounded-lg">
+            <img
+              src="/images/image-product-2-thumbnail.jpg"
+              alt=""
+              class="rounded-lg aspect-square hover:cursor-pointer"
+              onclick="setImage(1)"
+              id="lightbox-1"
+            />
+          </div>
+          <div class="bg-white/75 rounded-lg">
+            <img
+              src="/images/image-product-3-thumbnail.jpg"
+              alt=""
+              class="rounded-lg aspect-square hover:cursor-pointer"
+              onclick="setImage(2)"
+              id="lightbox-2"
+            />
+          </div>
+          <div class="bg-white/75 rounded-lg">
+            <img
+              src="/images/image-product-4-thumbnail.jpg"
+              alt=""
+              class="rounded-lg aspect-square hover:cursor-pointer"
+              onclick="setImage(3)"
+              id="lightbox-3"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
     <main
       class="flex justify-center items-center font-body pt-0 sm:pt-20 pb-20"
     >
@@ -270,7 +368,7 @@
               alt=""
               class="sm:rounded-2xl rounded-none mb-8 aspect-square w-[600px] relative z-0"
               id="large-image"
-              onclick="openLightbox()"
+              onclick="handleLightbox()"
             />
             <button
               onclick="changeImage(-1)"
